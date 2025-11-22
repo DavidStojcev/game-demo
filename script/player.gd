@@ -25,10 +25,11 @@
 	#move_and_slide()
 
 extends CharacterBody2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Constants
-const SPEED = 140.0
-const JUMP_VELOCITY = -250.0  # Negative for upward movement
+const SPEED = 120.0
+const JUMP_VELOCITY = -350.0  # Negative for upward movement
 #var velocity: Vector2 = Vector2.ZERO
 
 # Get the gravity from the project settings to be consistent
@@ -49,6 +50,13 @@ func _physics_process(delta):
 		
 	# Get horizontal movement input
 	direction = Input.get_axis("ui_left", "ui_right")
+	
+	# Turn character body depending on walking direction
+	if Input.is_action_just_pressed("ui_left"):
+		animated_sprite.flip_h = true
+	if Input.is_action_just_pressed("ui_right"):
+		animated_sprite.flip_h = false
+		
 	
 	# Calculate horizontal velocity
 	if direction:
