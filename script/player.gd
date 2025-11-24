@@ -29,7 +29,7 @@ extends CharacterBody2D
 
 # Constants
 const SPEED = 120.0
-const JUMP_VELOCITY = -350.0  # Negative for upward movement
+const JUMP_VELOCITY = -300.0  # Negative for upward movement
 #var velocity: Vector2 = Vector2.ZERO
 
 # Get the gravity from the project settings to be consistent
@@ -45,18 +45,37 @@ func _physics_process(delta):
 	
 	# Handle Jump Input
 	# Check if the player is on the floor AND the jump action is pressed
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	# Get horizontal movement input
-	direction = Input.get_axis("ui_left", "ui_right")
 	
-	# Turn character body depending on walking direction
-	if Input.is_action_just_pressed("ui_left"):
-		animated_sprite.flip_h = true
-	if Input.is_action_just_pressed("ui_right"):
-		animated_sprite.flip_h = false
+	# Infinite jump	
+	#if Input.is_action_just_pressed("ui_accept"):
+		#velocity.y = JUMP_VELOCITY
 		
+	# Get input direction: -1, 0, 1
+	direction = Input.get_axis("move_left", "move_right")
+	
+	#Flip the character/sprite
+	if direction > 0:
+		animated_sprite.flip_h = false
+	if direction < 0:
+		animated_sprite.flip_h = true
+	
+	# MY SOLUTION Turn character body depending on walking direction
+	#if Input.is_action_just_pressed("move_left"):
+		#animated_sprite.flip_h = true
+	#if Input.is_action_just_pressed("move_right"):
+		#animated_sprite.flip_h = false
+		
+	#Play animations
+	if is_on_floor():
+		if direction == 0:
+			animated_sprite.play("idle")
+		else:
+			animated_sprite.play("run")
+	else:
+		animated_sprite.play("jump")
+	
 	
 	# Calculate horizontal velocity
 	if direction:
