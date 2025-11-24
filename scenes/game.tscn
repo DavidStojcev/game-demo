@@ -379,4 +379,10 @@ position = Vector2(168, -27)
 [node name="Green Enemy2" parent="Enemies" instance=ExtResource("6_p57ef")]
 position = Vector2(440, -60)
 
+[node name="Coin" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(266, -33)
+
+[node name="Coin2" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(265, -45)
+
 [connection signal="body_entered" from="Coins/Coin" to="Player" method="_on_coin_body_entered"]
