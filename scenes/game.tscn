@@ -382,4 +382,7 @@ position = Vector2(440, -60)
 [node name="Coin2" parent="." instance=ExtResource("4_lbhrr")]
 position = Vector2(265, -45)
 
+[node name="Coin" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(39, 4)
+
 [connection signal="body_entered" from="Coins/Coin" to="Player" method="_on_coin_body_entered"]
