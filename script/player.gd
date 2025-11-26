@@ -28,8 +28,8 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Constants
-const SPEED = 120.0
-const JUMP_VELOCITY = -300.0  # Negative for upward movement
+const SPEED = 110.0
+const JUMP_VELOCITY = -280.0  # Negative for upward movement
 #var velocity: Vector2 = Vector2.ZERO
 
 # Get the gravity from the project settings to be consistent
