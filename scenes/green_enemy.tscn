@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8j6ql12ip482"]
+[gd_scene load_steps=11 format=3 uid="uid://c8j6ql12ip482"]
 
 [ext_resource type="Texture2D" uid="uid://bp2e5pl4sl4" path="res://assets/sprites/slime_green.png" id="1_8d6nc"]
 [ext_resource type="Script" uid="uid://1xbee1g6qiiw" path="res://script/green_enemy.gd" id="1_yk8el"]
@@ -43,7 +43,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3gbq"]
 size = Vector2(8, 10)
 
-[node name="Green Enemy" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk8el"]
+size = Vector2(8, 11)
+
+[node name="Green Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
 script = ExtResource("1_yk8el")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -65,3 +70,10 @@ target_position = Vector2(13, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 6)
 target_position = Vector2(-13, 0)
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_yk8el")
